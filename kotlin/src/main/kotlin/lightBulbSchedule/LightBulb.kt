@@ -1,5 +1,5 @@
 package lightBulbSchedule
 
-class LightBulb {
-    // TODO
-}
+import java.util.UUID
+
+data class Lightbulb(val id: UUID, val isOn: Boolean = false)
