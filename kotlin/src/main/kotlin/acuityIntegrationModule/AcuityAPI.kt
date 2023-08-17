@@ -2,7 +2,7 @@ package acuityIntegrationModule
 
 import java.util.UUID
 import kotlinx.coroutines.delay
-import lightBulbSchedule.Lightbulb
+import lightBulbSchedule.LightBulb
 import kotlin.random.Random
 
 // Simulated external service – don't touch!
@@ -20,16 +20,15 @@ class AcuityAPI {
         UUID.fromString("5cd0e76c-f283-4270-a5b1-b263c89b33c8"),
     )
 
-    val sampleLightBulbs = sampleUUIDs.map { Lightbulb(it, false) }
+    val sampleLightBulbs = sampleUUIDs.map { LightBulb(it, false) }
 
-    fun generateRandomLightBulbs(count: Int): List<Lightbulb> =
-        (1..count).map { Lightbulb(UUID.randomUUID(), false) }
+    fun generateRandomLightBulbs(count: Int): List<LightBulb> =
+        (1..count).map { LightBulb(UUID.randomUUID(), false) }
 
     suspend fun powerOn(id: UUID): String {
         mimicNotFound(id)
         mimicDelay()
-
-        if (!sampleUUIDs.contains(id) && Random.nextDouble() < 0.01) throw Error("ACCUITY ERROR: Plug not working")
+        mimicPlugNotWorking(id)
 
         return "OK"
     }
@@ -43,7 +42,17 @@ class AcuityAPI {
     private suspend fun mimicDelay() = delay(Random.nextLong(2, 400))
 
     private fun mimicNotFound(id: UUID) {
-        val firstCharInId = id.toString()[0]
-        if (firstCharInId == '0') throw Error("ACCUITY ERROR: ID NOT FOUND")
+        if (sampleUUIDs.contains(id)) {
+            return
+        } else {
+            val firstCharInId = id.toString()[0]
+            if (firstCharInId == '0') throw Error("ACCUITY ERROR: ID NOT FOUND")
+        }
+    }
+
+    private fun mimicPlugNotWorking(id: UUID) {
+        if (sampleUUIDs.contains(id)) {
+            return
+        } else if (Random.nextDouble() < 0.01) throw Error("ACCUITY ERROR: Plug not working")
     }
 }

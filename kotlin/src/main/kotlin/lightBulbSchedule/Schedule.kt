@@ -4,16 +4,16 @@ import acuityIntegrationModule.AcuityAPI
 import java.time.LocalDateTime
 
 class Schedule(
-    val acuityAPI: AcuityAPI,
-    val name: String,
-    val hourOn: Int,
-    val hourOff: Int,
+    private val acuityAPI: AcuityAPI,
+    private val name: String,
+    private val hourOn: Int,
+    private val hourOff: Int,
 ) {
-    private val lightBulbs = mutableSetOf<Lightbulb>()
+    private val lightBulbs = mutableListOf<LightBulb>()
 
-    fun addLightBulb(lightBulb: Lightbulb) = lightBulbs.add(lightBulb)
+    fun addLightBulb(lightBulb: LightBulb) = lightBulbs.add(lightBulb)
 
-    fun removeLightBulb(lightBulb: Lightbulb) = lightBulbs.remove(lightBulb)
+    fun removeLightBulb(lightBulb: LightBulb) = lightBulbs.remove(lightBulb)
 
     suspend fun tick(currentTime: LocalDateTime)  {
         if (shouldGoOn(currentTime)) {
@@ -37,6 +37,10 @@ class Schedule(
         }
 
     fun showLightBulbsStatus() {
-        lightBulbs.forEach { print(if (it.isOn) " 1 " else " 0 ") }
+        if (lightBulbs[0].isOn) {
+            print("Light bulbs are ON | ")
+        } else {
+            print("Light bulbs are OFF | ")
+        }
     }
 }
