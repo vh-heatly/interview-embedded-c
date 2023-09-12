@@ -21,7 +21,7 @@ void forward_packets(FILE* file_ptr)
   if (size > 0) {
     packet_start_ptr = data;
     do {
-      packet_length = parse_packet(data, size);
+      packet_length = parse_packet(packet_start_ptr, size);
 
       // Forward the packet somewhere, this is not important.
       forward_packet(packet_start_ptr, packet_length);
