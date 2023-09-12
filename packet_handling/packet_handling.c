@@ -16,7 +16,7 @@ void forward_packets(FILE* file_ptr)
   ssize_t size = (ssize_t)fread(data, 1, MAX_DATA_SIZE, file_ptr);
   if (size > 0) {
     ssize_t packet_length;
-    uint8_t* packet_start_ptr = data;
+    const uint8_t* packet_start_ptr = data;
     do {
       packet_length = parse_packet(packet_start_ptr, size);
 
