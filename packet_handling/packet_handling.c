@@ -28,6 +28,6 @@ void forward_packets(FILE* file_ptr)
 
       size -= packet_length;
       packet_start_ptr += packet_length;
-    } while (size >= packet_length);
+    } while (size > 0);
   }
 }
