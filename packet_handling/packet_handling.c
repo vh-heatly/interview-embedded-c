@@ -14,17 +14,14 @@ void forward_packets(FILE* file_ptr)
 {
   // Read up to MAX_DATA_SIZE bytes from file_ptr into data.
   ssize_t size = (ssize_t)fread(data, 1, MAX_DATA_SIZE, file_ptr);
-  if (size > 0) {
-    ssize_t packet_length;
-    const uint8_t* packet_start_ptr = data;
-    do {
-      packet_length = parse_packet(packet_start_ptr, size);
+  const uint8_t* packet_start_ptr = data;
+  while (size > 0) {
+    const ssize_t packet_length = parse_packet(packet_start_ptr, size);
 
-      // Forward the packet somewhere, this is not important.
-      forward_packet(packet_start_ptr, packet_length);
+    // Forward the packet somewhere, this is not important.
+    forward_packet(packet_start_ptr, packet_length);
 
-      size -= packet_length;
-      packet_start_ptr += packet_length;
-    } while (size > 0);
+    size -= packet_length;
+    packet_start_ptr += packet_length;
   }
 }
