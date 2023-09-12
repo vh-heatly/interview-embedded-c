@@ -12,14 +12,11 @@ void forward_packet(const uint8_t* const packet, size_t packet_size);
 
 void forward_packets(FILE* file_ptr)
 {
-  ssize_t size;
-  ssize_t packet_length;
-  uint8_t* packet_start_ptr;
-
   // Read up to MAX_DATA_SIZE bytes from file_ptr into data.
-  size = (ssize_t)fread(data, 1, MAX_DATA_SIZE, file_ptr);
+  ssize_t size = (ssize_t)fread(data, 1, MAX_DATA_SIZE, file_ptr);
   if (size > 0) {
-    packet_start_ptr = data;
+    ssize_t packet_length;
+    uint8_t* packet_start_ptr = data;
     do {
       packet_length = parse_packet(packet_start_ptr, size);
 
