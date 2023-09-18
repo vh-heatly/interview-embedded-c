@@ -1,23 +1,14 @@
-import acuityIntegrationModule.AcuityAPI
+import acuityIntegrationModule.LightBulbAPI
 import kotlinx.coroutines.runBlocking
 import lightBulbSchedule.Schedule
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.system.measureTimeMillis
 
-// TASK:
-// SmartHome Inc. offers smart home devices and services. Your task is to develop
-// a scheduling feature for a smart home app that controls smart light bulbs 💡
-
-// CURRENT FUNCTIONALITY:
-// - Create, edit, and delete light bulb schedules
-// - Specify which light bulbs are included in a schedule
-// - Function to toggle schedules on or off
-
 fun main() {
-    val acuityAPI = AcuityAPI()
-    val schedule = Schedule(acuityAPI, "Simple schedule", 8, 18)
-    acuityAPI.sampleLightBulbs.forEach { schedule.addLightBulb(it) }
+    val lightBulbAPI = LightBulbAPI()
+    val schedule = Schedule(lightBulbAPI, "Simple schedule", 8, 18)
+    lightBulbAPI.sampleLightBulbs.forEach { schedule.addLightBulb(it) }
 
     // CHANGE HERE FOR TIME MACHINE
     // scalingFactor == 1L --> Real time

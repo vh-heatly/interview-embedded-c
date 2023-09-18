@@ -6,7 +6,7 @@ import lightBulbSchedule.LightBulb
 import kotlin.random.Random
 
 // Simulated external service – don't touch!
-class AcuityAPI {
+class LightBulbAPI {
     private val sampleUUIDs = setOf(
         UUID.fromString("7fa1be5e-ac82-4cba-b364-051d209dcc6d"),
         UUID.fromString("dc92d773-c781-4e3a-9981-e8539599df56"),
@@ -46,13 +46,13 @@ class AcuityAPI {
             return
         } else {
             val firstCharInId = id.toString()[0]
-            if (firstCharInId == '0') throw Error("ACCUITY ERROR: ID NOT FOUND")
+            if (firstCharInId == '0') throw Error("LIGHT BULB API ERROR: ID NOT FOUND")
         }
     }
 
     private fun mimicPlugNotWorking(id: UUID) {
         if (sampleUUIDs.contains(id)) {
             return
-        } else if (Random.nextDouble() < 0.01) throw Error("ACCUITY ERROR: Plug not working")
+        } else if (Random.nextDouble() < 0.01) throw Error("LIGHT BULB API ERROR: Plug not working")
     }
 }

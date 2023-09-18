@@ -1,10 +1,10 @@
 package lightBulbSchedule
 
-import acuityIntegrationModule.AcuityAPI
+import acuityIntegrationModule.LightBulbAPI
 import java.time.LocalDateTime
 
 class Schedule(
-    private val acuityAPI: AcuityAPI,
+    private val acuityAPI: LightBulbAPI,
     private val name: String,
     private val hourOn: Int,
     private val hourOff: Int,
