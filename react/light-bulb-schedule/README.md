@@ -4,7 +4,8 @@
 This project is set up using React v18 and Vite v4.
 
 ### Getting started
-Start the app using `yarn dev`
+1. Install dependencies: `yarn`
+2. Start the app: `yarn dev`
 
 ### Tasks
 1. Code walkthrough – go through the code and discuss it with your interviewer, try to explain your understanding of the code.
