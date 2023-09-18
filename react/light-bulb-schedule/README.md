@@ -3,6 +3,9 @@
 ### About
 This project is set up using React v18 and Vite v4.
 
+### Getting started
+Start the app using `yarn dev`
+
 ### Tasks
 1. Code walkthrough – go through the code and discuss it with your interviewer, try to explain your understanding of the code.
 2. Schedule creation – you have access to the light bulbs and the current (mocked) time. Your task is to create a schedule that changes the "on"-status of a set of light bulbs. The schedule should turn on all light bulbs on a specific time, and turn them off on another specific time.

@@ -1,7 +1,7 @@
 # Let's schedule some light bulbs!
 SmartHome Inc. offers smart home devices and services. Your task is to develop a scheduling feature for a smart home app that controls smart light bulbs 💡
 
-### CURRENT FUNCTIONALITY
+### Current Functionality
 * Create, edit, and delete light bulb schedules
 * Specify which light bulbs are included in a schedule
 * Function to toggle schedules on or off
