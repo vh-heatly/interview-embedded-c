@@ -34,7 +34,7 @@ class Schedule(
             // |---ON---|---OFF---|---MIDNIGHT---|
             currentTime.hour in hourOn until hourOff
         } else {
-            // |---OFF---|---MIDNIGHT---|---ON---|
+            // |---ON---|---MIDNIGHT---|---OFF---|
             currentTime.hour < hourOff || currentTime.hour >= hourOn
         }
     }
