@@ -29,18 +29,21 @@ class Schedule(
         }
     }
 
-    private fun shouldGoOn(currentTime: LocalDateTime): Boolean =
-        if (hourOn < hourOff) {
+    private fun shouldGoOn(currentTime: LocalDateTime): Boolean {
+        return if (hourOn < hourOff) {
+            // |---ON---|---OFF---|---MIDNIGHT---|
             currentTime.hour in hourOn until hourOff
         } else {
-            currentTime.hour in hourOff until hourOn
+            // |---OFF---|---MIDNIGHT---|---ON---|
+            currentTime.hour < hourOff || currentTime.hour >= hourOn
         }
+    }
 
     fun showLightBulbsStatus() {
         if (lightBulbs[0].isOn) {
-            print("Light bulbs are ON | ")
+            println("Light bulbs are ON")
         } else {
-            print("Light bulbs are OFF | ")
+            println("Light bulbs are OFF")
         }
     }
 }
