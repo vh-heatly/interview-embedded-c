@@ -11,7 +11,6 @@ fun main() {
     lightBulbAPI.sampleLightBulbs.forEach { schedule.addLightBulb(it) }
 
     var time = LocalDateTime.now()
-    time = time.minusMinutes(time.minute.toLong())
 
     while (true) {
         runBlocking {
